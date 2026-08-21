@@ -1,0 +1,11 @@
+{
+  "name": "outfit-atelier",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix outfit-shop run dev",
+    "build": "npm --prefix outfit-shop run build",
+    "start": "npm --prefix outfit-shop run start",
+    "lint": "npm --prefix outfit-shop run lint"
+  }
+}

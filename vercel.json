@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npm --prefix outfit-shop run build",
+  "outputDirectory": "outfit-shop/.next",
+  "installCommand": "npm --prefix outfit-shop install",
+  "framework": "nextjs"
+}
