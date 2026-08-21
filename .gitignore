@@ -1,19 +1,79 @@
-# Backups
+# ═══════════════════════════════════════════════════════════════════════════
+# STANDARD ENTERPRISE GITIGNORE & SECRET PROTECTION SPECIFICATION
+# OutFIT Haute Atelier Architecture
+# ═══════════════════════════════════════════════════════════════════════════
+
+# 1. Environment Variables & Secret Credentials (NEVER COMMIT SECRETS)
+.env
+.env.*
+!.env.example
+*.env
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+secrets/
+credentials/
+id_rsa*
+*.keystore
+
+# 2. Node Dependencies & Package Manager Artifacts
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-store/
+
+# 3. Next.js & Build Artifacts
+.next/
+out/
+build/
+dist/
+.vercel
+.cloudflare
+.turbo
+*.tsbuildinfo
+next-env.d.ts.bak
+
+# 4. Operating System & Editor Metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Tt]humbs.db
+
+# IDEs and Code Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# 5. Local Backups & Scratch Files
 backup/
 *.bak
 *.backup
+*.tmp
+*.temp
+scratch/
+.system_generated/
+*.log
 
-# OS & Editor
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-
-# Dependencies & Build (for future Next.js/Vite apps)
-node_modules/
-.next/
-dist/
-build/
-out/
-.env*.local
-.env
+# 6. Testing & Coverage
+coverage/
+.nyc_output/
+cypress/videos/
+cypress/screenshots/
+test-results/
