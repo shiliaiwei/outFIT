@@ -77,3 +77,13 @@ coverage/
 cypress/videos/
 cypress/screenshots/
 test-results/
+
+# 7. Postman Collections, Environments & Tooling
+.postman/
+postman/
+*.postman_collection.json
+*.postman_environment.json
+*.postman_globals.json
+*.postman_dump.json
+Postman/
+
