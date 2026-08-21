@@ -341,49 +341,45 @@ modal {
   color: transparent;
 }
 
-/* REALISTIC 3D MECHANICAL FLIP TRANSITION */
+/* PURE 3D MECHANICAL FLIP (NO ZOOM / NO SCALE / NO JITTER) */
 .flip-card-3d-wrapper {
-  perspective: 1000px;
-  perspective-origin: center;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
 }
 
 .flip-3d-active {
-  animation: flip3dIn 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: pureFlipIn 0.30s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  backface-visibility: hidden;
+  transform-origin: center center;
   will-change: transform, opacity;
 }
 
 .flip-3d-flipping {
-  animation: flip3dOut 0.24s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+  animation: pureFlipOut 0.24s cubic-bezier(0.8, 0, 0.8, 0.2) forwards;
+  backface-visibility: hidden;
+  transform-origin: center center;
   will-change: transform, opacity;
 }
 
-@keyframes flip3dIn {
+@keyframes pureFlipIn {
   0% {
     opacity: 0;
-    transform: rotateX(85deg) translateY(-6px) scale(0.97);
-    filter: blur(2px);
-  }
-  60% {
-    opacity: 0.9;
-    transform: rotateX(-6deg) translateY(0.5px) scale(1.005);
+    transform: rotateX(90deg);
   }
   100% {
     opacity: 1;
-    transform: rotateX(0deg) translateY(0) scale(1);
-    filter: blur(0);
+    transform: rotateX(0deg);
   }
 }
 
-@keyframes flip3dOut {
+@keyframes pureFlipOut {
   0% {
     opacity: 1;
-    transform: rotateX(0deg) translateY(0) scale(1);
-    filter: blur(0);
+    transform: rotateX(0deg);
   }
   100% {
     opacity: 0;
-    transform: rotateX(-85deg) translateY(6px) scale(0.97);
-    filter: blur(2px);
+    transform: rotateX(-90deg);
   }
 }
 

@@ -28,24 +28,19 @@ interface ShopHeaderProps {
 
 const ANNOUNCEMENT_PHRASES = [
   {
-    gold: "ពេលនេះ DEVELOPER កំពុងសម្រាក ខួរក្បាលចាប់ផ្តើមដំណើរការប្រព័ន្ធច្នៃប្រឌិតស្វ័យប្រវត្តិ",
-    text: "កូដដ៏ល្អឥតខ្ចោះមិនមែនកើតចេញពីសម្ពាធតានតឹងនោះទេ តែត្រូវបានរកឃើញនៅពេលអ្នកដើរចេញ ហើយទុកឱ្យគំនិតភ្ជាប់គ្នាដោយស្ងប់ស្ងាត់។",
+    gold: "DEVELOPER កំពុងសម្រាក — ប៉ុន្តែខួរក្បាលមិនដែលឈប់ទេ",
+    text: "ប្រព័ន្ធច្នៃប្រឌិតស្វ័យប្រវត្តិកំពុងដំណើរការយ៉ាងស្ងៀមស្ងាត់ ដោយគ្មានពាក្យបញ្ជា។",
+    isKhmer: true,
+  },
+  {
+    gold: "កូដដ៏ល្អឥតខ្ចោះមិនកើតចេញពីភាពតានតឹងឡើយ",
+    text: "វាកើតឡើងត្រង់ចំណុចដែលអ្នកបោះបង់ការស្វែងរក ហើយទុកឱ្យគំនិតដើររកផ្លូវរបស់វាដោយខ្លួនឯង។",
     isKhmer: true,
   },
   {
     gold: "TO BE EDUCATED IS TO BE CHANGED.",
-    text: "ការទទួលបានការអប់រំ គឺការផ្លាស់ប្តូរផ្នត់គំនិត បង្កើតទស្សនវិស័យ និងស្ថាបត្យកម្មជីវិតថ្មី។",
-    isKhmer: true,
-  },
-  {
-    gold: "នៅតែជា DEVELOPER គ្រាន់តែនៅខាងក្រៅ",
-    text: "គំនិតដ៏អស្ចារ្យមិនមែនកើតចេញតែពីលើតុធ្វើការនោះទេ — ការសម្រាកក្នុងបរិយាកាសបើកទូលាយនាំមកនូវភាពច្នៃប្រឌិត។",
-    isKhmer: true,
-  },
-  {
-    gold: "សិល្បៈនៃការច្នៃម៉ូដ OUTFIT ATELIER",
-    text: "ក្រណាត់កប្បាសសូត្រធម្មជាតិ និងក្រណាត់ទេសឯក Normandy Flax — គុណភាពខ្ពស់ ផាសុកភាព និងភាពប្រណិតពិតប្រាកដ។",
-    isKhmer: true,
+    text: "NOT EVERY GREAT IDEA STARTS AT A DESK.",
+    isKhmer: false,
   }
 ];
 
@@ -66,7 +61,7 @@ export function ShopHeader({
   const [isPaused, setIsPaused] = useState(false);
   const currencyRef = useRef<HTMLDivElement>(null);
 
-  // Realistic 3D mechanical flip ticker (11s reading time + 260ms snappy flip)
+  // Realistic 3D mechanical flip ticker (8.5s reading time + 280ms pure flip)
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
@@ -74,8 +69,8 @@ export function ShopHeader({
       setTimeout(() => {
         setFlipIndex((prev) => (prev + 1) % ANNOUNCEMENT_PHRASES.length);
         setIsFlipping(false);
-      }, 260);
-    }, 11000);
+      }, 280);
+    }, 8500);
 
     return () => clearInterval(timer);
   }, [isPaused]);
@@ -105,23 +100,27 @@ export function ShopHeader({
 
   return (
     <>
-      {/* 1. Ultra-Compact Gold Premium 3D Mechanical Flip Ticker (100% Khmer Language Only, 11s duration, hover-pause) */}
+      {/* 1. Ultra-Compact Gold Premium 3D Mechanical Flip Ticker (Fixed rigid height, zero layout shift) */}
       <div 
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="bg-[#12171E] text-[#F8F7F4] py-2 px-4 overflow-hidden border-b border-[#D4AF37]/30 select-none relative min-h-[38px] flex items-center justify-center cursor-default flip-card-3d-wrapper"
+        className="bg-[#12171E] text-[#F8F7F4] h-10 sm:h-11 px-4 overflow-hidden border-b border-[#D4AF37]/30 select-none relative flex items-center justify-center cursor-default flip-card-3d-wrapper shrink-0"
       >
         <div 
-          lang="km"
-          className={`flex items-center justify-center gap-2.5 text-center font-khmer text-[13.5px] sm:text-[14px] leading-relaxed font-semibold ${
+          lang={ANNOUNCEMENT_PHRASES[flipIndex].isKhmer ? "km" : "en"}
+          className={`flex items-center justify-center gap-2.5 text-center px-2 w-full max-w-6xl mx-auto truncate ${
+            ANNOUNCEMENT_PHRASES[flipIndex].isKhmer 
+              ? 'font-khmer text-[13px] sm:text-[13.5px] leading-snug font-semibold' 
+              : 'font-mono text-[11px] sm:text-[12px] font-semibold'
+          } ${
             isFlipping ? 'flip-3d-flipping' : 'flip-3d-active'
           }`}
         >
-          <span className="gold-gradient-text font-bold tracking-wide">
+          <span className="gold-gradient-text font-bold tracking-wide shrink-0">
             {ANNOUNCEMENT_PHRASES[flipIndex].gold}
           </span>
-          <span className="text-[#D4AF37]/60 font-mono hidden md:inline">—</span>
-          <span className="text-[#F8F7F4] tracking-normal hidden md:inline">
+          <span className="text-[#D4AF37]/60 font-mono hidden md:inline shrink-0">—</span>
+          <span className="text-[#F8F7F4] tracking-normal hidden md:inline truncate">
             {ANNOUNCEMENT_PHRASES[flipIndex].text}
           </span>
         </div>

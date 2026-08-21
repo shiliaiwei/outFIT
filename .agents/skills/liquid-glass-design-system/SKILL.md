@@ -188,3 +188,12 @@ To prevent Next.js React hydration mismatches between Server-Side Rendering and 
    ```
 5. **Scale Balancing Rule**: Because Khmer glyphs include stacked co-engs and sub-scripts, Khmer text must always be scaled **+1.5px to +2.5px larger** than equivalent Latin text (e.g. `text-[13.5px] - text-[14px]` with `leading-relaxed`).
 
+---
+
+## 8 · Strict Git Push Protocol — User Command Only
+
+* **MANDATORY LAW:** **NEVER run `git push` automatically.**
+* All code edits, builds, typechecks, and local verifications must stay local.
+* Only execute `git push` when the user explicitly commands it (e.g. *"push"*, *"push it"*, *"push to github"*).
+
+
