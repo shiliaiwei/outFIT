@@ -65,25 +65,44 @@ export function ShopHeader({
 
   return (
     <header className="sticky top-0 z-40 w-full flex flex-col">
-      {/* 1. Ultra-Compact Top Announcement Bar */}
-      <div className="bg-[#1E2631] text-[#F8F7F4] text-[11px] py-1.5 px-3 sm:px-6 flex items-center justify-between border-b border-white/10 font-mono select-none">
-        
-        {/* Left: Under development message requested by user */}
-        <div className="flex items-center gap-2 mx-auto sm:mx-0 truncate">
-          <span className="w-1.5 h-1.5 rounded-[2px] bg-[#C84428] shrink-0 animate-pulse" />
-          <span className="truncate">
-            <strong className="text-[#E05436]">This page is under development</strong> • Still a developer. Just outside. Not every great idea starts at a desk.
-          </span>
-        </div>
+      {/* 1. Ultra-Compact Gold Premium Marquee Loop Top Bar */}
+      <div className="bg-[#12171E] text-[#F8F7F4] text-[11px] py-1.5 overflow-hidden border-b border-[#D4AF37]/30 font-mono select-none relative">
+        {/* Subtle Edge Vignettes */}
+        <div className="absolute inset-y-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-[#12171E] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-[#12171E] to-transparent z-10 pointer-events-none" />
 
-        {/* Right: Live Brands & Verified Archive Pool */}
-        <div className="hidden lg:flex items-center gap-3 text-[10px] text-[#8E9AA8] shrink-0">
-          <span className="flex items-center gap-1.5 text-white font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span>Gucci • Louis Vuitton • RLX • OutFIT Atelier</span>
-          </span>
-          <span>•</span>
-          <span className="text-[#EAE6DF] font-bold">{totalProductsCount || 177} Pieces</span>
+        <div className="animate-announcement-marquee flex items-center whitespace-nowrap cursor-default">
+          {[1, 2].map((trackIndex) => (
+            <div key={trackIndex} className="flex items-center gap-8 sm:gap-12 shrink-0 pr-8 sm:pr-12">
+              <div className="flex items-center gap-2.5">
+                <span className="text-[#D4AF37] text-xs">✦</span>
+                <span className="gold-gradient-text font-bold uppercase tracking-wider">This page is under development</span>
+                <span className="text-[#8E9AA8]">•</span>
+                <span className="text-[#F8F7F4]">Still a developer. Just outside. Not every great idea starts at a desk.</span>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <span className="text-[#D4AF37] text-xs">✦</span>
+                <span className="text-[#E05436] font-bold">Haute Archive</span>
+                <span className="text-[#8E9AA8]">•</span>
+                <span className="text-[#EAE6DF]">Normandy Flax Linen, Mulberry Silk &amp; California Supima Knits</span>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <span className="text-[#D4AF37] text-xs">✦</span>
+                <span className="text-[#D4AF37] font-semibold">Verified Brands</span>
+                <span className="text-[#8E9AA8]">•</span>
+                <span className="text-white">Gucci • Louis Vuitton • Ralph Lauren RLX • OutFIT Atelier ({totalProductsCount || 177} Pieces)</span>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <span className="text-[#D4AF37] text-xs">✦</span>
+                <span className="gold-gradient-text font-bold">Insured Courier</span>
+                <span className="text-[#8E9AA8]">•</span>
+                <span className="text-[#F8F7F4]">Complimentary Global Atelier Express on orders over $120.00 USD</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 

@@ -313,6 +313,34 @@ modal {
   animation-play-state: paused;
 }
 
+/* GOLD PREMIUM ANNOUNCEMENT MARQUEE */
+@keyframes gold-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-announcement-marquee {
+  display: flex;
+  width: max-content;
+  animation: gold-marquee 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-announcement-marquee:hover {
+  animation-play-state: paused;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF0B8 0%, #D4AF37 50%, #E67E22 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 /* LIQUID GLASS GIANT LOGO STYLING */
 .liquid-glass-logo-charcoal {
   background: linear-gradient(180deg, rgba(30, 38, 49, 0.98) 0%, rgba(30, 38, 49, 0.75) 55%, rgba(30, 38, 49, 0.35) 100%);
