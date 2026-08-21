@@ -1,7 +1,10 @@
 {
-  "name": "outfit-shop",
-  "version": "0.1.0",
+  "name": "outfit-workspace",
+  "version": "1.0.0",
   "private": true,
+  "workspaces": [
+    "outfit-shop"
+  ],
   "scripts": {
     "dev": "npm --prefix outfit-shop run dev",
     "build": "npm --prefix outfit-shop run build",
@@ -9,23 +12,8 @@
     "lint": "npm --prefix outfit-shop run lint"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
-    "date-fns": "^4.4.0",
-    "lucide-react": "^1.33.0",
     "next": "16.3.1",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "recharts": "^3.10.1",
-    "tailwind-merge": "^3.6.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.3.1",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "react-dom": "19.2.8"
   }
 }
