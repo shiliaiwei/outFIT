@@ -63,20 +63,22 @@ export function ShopHeader({
   const [currencyMenuOpen, setCurrencyMenuOpen] = useState(false);
   const [flipIndex, setFlipIndex] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const currencyRef = useRef<HTMLDivElement>(null);
 
-  // Smooth vertical flip ticker rotation
+  // Smooth vertical flip ticker rotation (8.5s for comfortable, relaxed reading)
   useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(() => {
       setIsFlipping(true);
       setTimeout(() => {
         setFlipIndex((prev) => (prev + 1) % ANNOUNCEMENT_PHRASES.length);
         setIsFlipping(false);
-      }, 300);
-    }, 4500);
+      }, 500);
+    }, 8500);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isPaused]);
 
   // Click outside to close currency dropdown
   useEffect(() => {
@@ -103,14 +105,18 @@ export function ShopHeader({
 
   return (
     <>
-      {/* 1. Ultra-Compact Gold Premium Vertical Flip Ticker (Non-sticky: scrolls away with page) */}
-      <div className="bg-[#12171E] text-[#F8F7F4] text-[11px] py-1.5 px-4 overflow-hidden border-b border-[#D4AF37]/30 select-none relative min-h-[32px] flex items-center justify-center">
+      {/* 1. Ultra-Compact Gold Premium Vertical Flip Ticker (Non-sticky: scrolls away with page, hover pauses) */}
+      <div 
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        className="bg-[#12171E] text-[#F8F7F4] text-[11px] py-2 px-4 overflow-hidden border-b border-[#D4AF37]/30 select-none relative min-h-[34px] flex items-center justify-center cursor-default"
+      >
         <div 
-          className={`flex items-center justify-center gap-2.5 text-center transition-all duration-300 ease-out transform ${
+          className={`flex items-center justify-center gap-2.5 text-center transition-all duration-500 ease-in-out transform ${
             ANNOUNCEMENT_PHRASES[flipIndex].isKhmer ? 'font-khmer' : 'font-mono'
           } ${
             isFlipping 
-              ? 'opacity-0 -translate-y-2 scale-98 blur-[1px]' 
+              ? 'opacity-0 -translate-y-2.5 scale-98 blur-[1.5px]' 
               : 'opacity-100 translate-y-0 scale-100 blur-0'
           }`}
         >
