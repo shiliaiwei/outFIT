@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd outfit-shop && npm run build",
+  "buildCommand": "cd outfit-shop && npm install && npm run build",
   "outputDirectory": "outfit-shop/.next",
   "installCommand": "npm install"
 }

@@ -14,15 +14,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ═══════════════════════════════════════════════════════════════════════════
-  # 1. QUALITY GATE & VERIFICATION PIPELINE
-  # ═══════════════════════════════════════════════════════════════════════════
   validate-and-build:
     name: Typecheck, Audit & Build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./outfit-shop
 
     steps:
       - name: 📥 Checkout Codebase
@@ -32,16 +26,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-          cache-dependency-path: outfit-shop/package-lock.json
 
       - name: 📦 Install Dependencies
-        run: npm ci
+        working-directory: ./outfit-shop
+        run: npm install
 
       - name: 🛡️ TypeScript Strict Type Check
+        working-directory: ./outfit-shop
         run: npx tsc --noEmit
 
       - name: ⚙️ Next.js Production Build
+        working-directory: ./outfit-shop
         run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
@@ -54,9 +49,6 @@ jobs:
           path: outfit-shop/.next
           retention-days: 7
 
-  # ═══════════════════════════════════════════════════════════════════════════
-  # 2. EDGE DEPLOYMENT READINESS (Cloudflare Pages / Vercel / Live Edge)
-  # ═══════════════════════════════════════════════════════════════════════════
   deploy-edge:
     name: Deploy to Edge Production
     needs: validate-and-build
