@@ -26,6 +26,25 @@ interface ShopHeaderProps {
   totalProductsCount: number;
 }
 
+const ANNOUNCEMENT_PHRASES = [
+  {
+    gold: "DEV AT REST. ENGAGING THE BRAIN’S DEFAULT MODE NETWORK.",
+    text: "YOUR BEST CODE IS NOT WRITTEN UNDER MENTAL STRAIN, BUT DISCOVERED IN SILENCE."
+  },
+  {
+    gold: "STILL A DEVELOPER. JUST OUTSIDE.",
+    text: "NOT EVERY GREAT ARCHITECTURAL IDEA STARTS AT A DESK."
+  },
+  {
+    gold: "RUNNING COGNITIVE GARBAGE COLLECTION IN THE OPEN AIR.",
+    text: "A CLEAR MIND ARCHITECTS WHAT OVERCLOCKING CANNOT FORCE."
+  },
+  {
+    gold: "HAUTE ATELIER ARCHIVE.",
+    text: "NORMANDY FLAX LINEN, MULBERRY SILK & CALIFORNIA SUPIMA KNITS."
+  }
+];
+
 export function ShopHeader({
   cartCount,
   wishlistCount,
@@ -38,7 +57,22 @@ export function ShopHeader({
 }: ShopHeaderProps) {
   const [searchFocused, setSearchFocused] = useState(false);
   const [currencyMenuOpen, setCurrencyMenuOpen] = useState(false);
+  const [flipIndex, setFlipIndex] = useState(0);
+  const [isFlipping, setIsFlipping] = useState(false);
   const currencyRef = useRef<HTMLDivElement>(null);
+
+  // Smooth vertical flip ticker rotation
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIsFlipping(true);
+      setTimeout(() => {
+        setFlipIndex((prev) => (prev + 1) % ANNOUNCEMENT_PHRASES.length);
+        setIsFlipping(false);
+      }, 300);
+    }, 4200);
+
+    return () => clearInterval(timer);
+  }, []);
 
   // Click outside to close currency dropdown
   useEffect(() => {
@@ -65,26 +99,22 @@ export function ShopHeader({
 
   return (
     <>
-      {/* 1. Ultra-Compact Gold Premium Marquee Top Bar (Non-sticky: scrolls away with page) */}
-      <div className="bg-[#12171E] text-[#F8F7F4] text-[11px] py-1.5 overflow-hidden border-b border-[#D4AF37]/30 font-mono select-none relative">
-        {/* Subtle Edge Vignettes */}
-        <div className="absolute inset-y-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-[#12171E] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-[#12171E] to-transparent z-10 pointer-events-none" />
-
-        <div className="animate-announcement-marquee flex items-center whitespace-nowrap cursor-default">
-          {[1, 2, 3, 4].map((trackIndex) => (
-            <div key={trackIndex} className="flex items-center gap-14 shrink-0 pr-14">
-              <div className="flex items-center gap-3.5">
-                <span className="gold-gradient-text font-bold tracking-wider">
-                  DEV AT REST. ENGAGING THE BRAIN’S DEFAULT MODE NETWORK.
-                </span>
-                <span className="text-[#D4AF37]/60 font-mono">—</span>
-                <span className="text-[#F8F7F4] tracking-wide">
-                  YOUR BEST CODE IS NOT WRITTEN UNDER MENTAL STRAIN, BUT DISCOVERED WHEN YOU STEP AWAY AND LET SUBCONSCIOUS SYNAPSES CONNECT IN SILENCE.
-                </span>
-              </div>
-            </div>
-          ))}
+      {/* 1. Ultra-Compact Gold Premium Vertical Flip Ticker (Non-sticky: scrolls away with page) */}
+      <div className="bg-[#12171E] text-[#F8F7F4] text-[11px] py-1.5 px-4 overflow-hidden border-b border-[#D4AF37]/30 font-mono select-none relative min-h-[32px] flex items-center justify-center">
+        <div 
+          className={`flex items-center justify-center gap-2.5 text-center transition-all duration-300 ease-out transform ${
+            isFlipping 
+              ? 'opacity-0 -translate-y-2 scale-98 blur-[1px]' 
+              : 'opacity-100 translate-y-0 scale-100 blur-0'
+          }`}
+        >
+          <span className="gold-gradient-text font-bold tracking-wider">
+            {ANNOUNCEMENT_PHRASES[flipIndex].gold}
+          </span>
+          <span className="text-[#D4AF37]/60 font-mono hidden md:inline">—</span>
+          <span className="text-[#F8F7F4] tracking-wide hidden md:inline">
+            {ANNOUNCEMENT_PHRASES[flipIndex].text}
+          </span>
         </div>
       </div>
 
