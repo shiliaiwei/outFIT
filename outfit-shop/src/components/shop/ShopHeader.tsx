@@ -64,8 +64,8 @@ export function ShopHeader({
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full flex flex-col">
-      {/* 1. Ultra-Compact Gold Premium Marquee Loop Top Bar */}
+    <>
+      {/* 1. Ultra-Compact Gold Premium Marquee Top Bar (Non-sticky: scrolls away with page) */}
       <div className="bg-[#12171E] text-[#F8F7F4] text-[11px] py-1.5 overflow-hidden border-b border-[#D4AF37]/30 font-mono select-none relative">
         {/* Subtle Edge Vignettes */}
         <div className="absolute inset-y-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-[#12171E] to-transparent z-10 pointer-events-none" />
@@ -75,7 +75,6 @@ export function ShopHeader({
           {[1, 2, 3, 4].map((trackIndex) => (
             <div key={trackIndex} className="flex items-center gap-12 shrink-0 pr-12">
               <div className="flex items-center gap-3">
-                <span className="text-[#D4AF37] text-xs">✦</span>
                 <span className="gold-gradient-text font-bold">Still a developer. Just outside.</span>
                 <span className="text-[#D4AF37]/60">—</span>
                 <span className="text-[#F8F7F4]">Not every great idea starts at a desk.</span>
@@ -85,9 +84,10 @@ export function ShopHeader({
         </div>
       </div>
 
-      {/* 2. Liquid Glass Main Header */}
-      <nav className="liquid-glass backdrop-blur-xl bg-white/95 border-b border-[#5A6678]/15 px-3 sm:px-6 py-2.5">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-6">
+      {/* 2. Liquid Glass Main Header (Sticky top navigation) */}
+      <header className="sticky top-0 z-40 w-full">
+        <nav className="liquid-glass backdrop-blur-xl bg-white/95 border-b border-[#5A6678]/15 px-3 sm:px-6 py-2.5">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-6">
           
           {/* Brand Logo and Submark */}
           <div className="flex items-center gap-3 shrink-0">
@@ -230,5 +230,6 @@ export function ShopHeader({
         </div>
       </nav>
     </header>
+    </>
   );
 }
