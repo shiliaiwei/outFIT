@@ -21,8 +21,17 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OutFIT — Modern Atelier POS, Staff & Admin Hub | theoufit.kesararamwithdigital.tech",
-  description: "Omnichannel point-of-sale terminal, multi-register telemetry, and store operations for OutFIT Atelier.",
+  title: "OutFIT — Haute Quiet Luxury Atelier & Storefront",
+  description: "Quiet luxury tailoring, Normandy flax overshirts, and high-fashion ready-to-wear essentials.",
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  }
 };
 
 export default function RootLayout({
