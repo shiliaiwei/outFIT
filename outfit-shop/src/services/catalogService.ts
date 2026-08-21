@@ -1,0 +1,208 @@
+import { ApiProduct, ShopProduct, CurrencyCode } from '@/types';
+
+const API_BASE_URL = 'https://api.kesararamwithdigital.tech/api/v1';
+
+// High-resolution curated editorial fashion imagery for items with missing/broken images
+const EDITORIAL_FALLBACK_IMAGES: string[] = [
+  'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1200&q=85', // Linen shirt
+  'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=85', // Minimalist tee
+  'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=1200&q=85', // Tailored trousers
+  'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=1200&q=85', // Work jacket
+  'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=85', // Black sweater
+  'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=1200&q=85', // Denim jacket
+  'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=1200&q=85', // Knit polo
+  'https://images.unsplash.com/photo-1479064555552-3ef4979f8908?auto=format&fit=crop&w=1200&q=85', // Luxury collection
+];
+
+// Fallback catalog in case of extreme backend disconnection
+const VERIFIED_FALLBACK_PRODUCTS: ShopProduct[] = [
+  {
+    id: '182',
+    name: 'Gucci Structured Oxford Shirt',
+    brand: 'Gucci',
+    category: 'Ready-to-Wear',
+    description: 'Tailored organic Egyptian cotton oxford shirt with mother-of-pearl buttons and relaxed atelier fit.',
+    price: 125.00,
+    originalPrice: 160.00,
+    stock: 269,
+    sku: 'SKU-GUC-0182',
+    barcode: 'SKU-GUC-0182',
+    material: '100% Egyptian Cotton • 180 GSM',
+    season: 'Core Atelier 2026',
+    imageUrl: 'https://res.cloudinary.com/od8t271n/image/upload/v1787072813/Velvet_Jacquard_Short_Sleeved_T_Shirt_HUY36WCW4001_PM2_Front_View.webp',
+    gallery: [
+      'https://res.cloudinary.com/od8t271n/image/upload/v1787072813/Velvet_Jacquard_Short_Sleeved_T_Shirt_HUY36WCW4001_PM2_Front_View.webp',
+      'https://res.cloudinary.com/od8t271n/image/upload/v1787073012/Monogram_Double_Face_Overshirt_HUB29WCO1859_PM2_Front_View.webp'
+    ],
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: [{ name: 'Mineral Charcoal', hex: '#1E2631' }, { name: 'Canvas Ecru', hex: '#EAE6DF' }]
+  },
+  {
+    id: '2',
+    name: 'Tailored Normandy Linen Overshirt',
+    brand: 'OutFIT Atelier',
+    category: 'Overshirts',
+    description: 'Unstructured tailoring crafted from heavy 280 GSM Normandy linen. Garment dyed for subtle patina.',
+    price: 89.00,
+    originalPrice: 110.00,
+    stock: 48,
+    sku: 'OUTFIT-LN-092',
+    barcode: 'SKU-LN-092-M',
+    material: '100% Normandy Flax Linen • 280 GSM',
+    season: 'Spring / Summer 2026',
+    imageUrl: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1200&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1200&q=85',
+      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=85'
+    ],
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: [{ name: 'Terracotta', hex: '#C84428' }, { name: 'Raw Sand', hex: '#D2B48C' }]
+  },
+  {
+    id: '3',
+    name: 'Minimalist Supima Knit Polo',
+    brand: 'OutFIT Atelier',
+    category: 'Knits',
+    description: 'Ultra-fine gauge knit polo in California Supima cotton with a seamless French collar.',
+    price: 65.00,
+    stock: 32,
+    sku: 'OUTFIT-KP-041',
+    barcode: 'SKU-KP-041-L',
+    material: '100% California Supima Cotton • 24 Gauge',
+    season: 'Core Atelier 2026',
+    imageUrl: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=1200&q=85',
+    gallery: ['https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=1200&q=85'],
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: [{ name: 'Sage Green', hex: '#879A89' }, { name: 'Deep Navy', hex: '#1B263B' }]
+  },
+  {
+    id: '4',
+    name: 'Pleated Relaxed Atelier Trouser',
+    brand: 'OutFIT Atelier',
+    category: 'Trousers',
+    description: 'High-waisted double pleated trouser cut from high-twist tropical wool with natural stretch.',
+    price: 95.00,
+    originalPrice: 130.00,
+    stock: 24,
+    sku: 'OUTFIT-TR-304',
+    barcode: 'SKU-TR-304-M',
+    material: '100% High-Twist Tropical Wool',
+    season: 'Spring / Summer 2026',
+    imageUrl: 'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=1200&q=85',
+    gallery: ['https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=1200&q=85'],
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: [{ name: 'Slate Gray', hex: '#5A6678' }, { name: 'Obsidian Black', hex: '#1E2631' }]
+  }
+];
+
+export const CatalogService = {
+  // Fetch real-time products from the public API endpoint
+  async getLiveProducts(): Promise<ShopProduct[]> {
+    try {
+      const res = await fetch(`${API_BASE_URL}/products?per_page=200`, {
+        headers: { 'Accept': 'application/json' },
+        cache: 'no-store'
+      });
+
+      if (!res.ok) {
+        return VERIFIED_FALLBACK_PRODUCTS;
+      }
+
+      const json = await res.json();
+      if (!json.data || !Array.isArray(json.data) || json.data.length === 0) {
+        return VERIFIED_FALLBACK_PRODUCTS;
+      }
+
+      // Helper to strictly ban generic placeholders and bleu-SNPCodeLab
+      const isValidImg = (url?: string | null): boolean => {
+        if (!url || typeof url !== 'string') return false;
+        if (url.includes('bleu-SNPCodeLab') || url.endsWith('null') || url.includes('placeholder')) return false;
+        return url.startsWith('http');
+      };
+
+      // Transform raw API data into polished ShopProduct structure
+      const products: ShopProduct[] = json.data.map((p: ApiProduct, index: number) => {
+        // Collect gallery images (Strictly excluding bleu-SNPCodeLab)
+        const galleryUrls: string[] = [];
+        if (isValidImg(p.primary_image?.image_url)) galleryUrls.push(p.primary_image!.image_url!);
+        if (p.images && Array.isArray(p.images)) {
+          p.images.forEach((img) => {
+            if (isValidImg(img.image_url) && !galleryUrls.includes(img.image_url)) {
+              galleryUrls.push(img.image_url);
+            }
+          });
+        }
+        if (isValidImg(p.image_url) && !galleryUrls.includes(p.image_url!)) {
+          galleryUrls.push(p.image_url!);
+        }
+
+        // Assign authentic editorial fashion image if none exists
+        let primaryImg = galleryUrls[0];
+        if (!isValidImg(primaryImg)) {
+          primaryImg = EDITORIAL_FALLBACK_IMAGES[index % EDITORIAL_FALLBACK_IMAGES.length];
+        }
+
+        const finalGallery = galleryUrls.length > 0 ? galleryUrls : [primaryImg];
+
+        // Determine price and stock from variants
+        let calculatedPrice = 85.00;
+        let calculatedStock = 18;
+        let skuCode = `OUTFIT-SKU-${p.product_id}`;
+        let barcodeCode = `SKU-0${p.product_id}`;
+
+        if (p.variants && p.variants.length > 0) {
+          const firstVar = p.variants[0];
+          calculatedPrice = Number(firstVar.sale_price) || 85.00;
+          calculatedStock = p.variants.reduce((acc, v) => acc + (Number(v.quantity) || 0), 0);
+          if (firstVar.sku) skuCode = firstVar.sku;
+          if (firstVar.barcode) barcodeCode = firstVar.barcode;
+        }
+
+        const categoryName = p.category?.category_name || 'Ready-to-Wear';
+        const brandName = p.brand || 'OutFIT Atelier';
+        const materialName = p.material_fabric || '100% Organic Tailored Cotton • 220 GSM';
+        const seasonName = p.season_collection || 'Core Atelier 2026';
+
+        return {
+          id: String(p.product_id),
+          name: p.product_name || `Atelier Piece #${p.product_id}`,
+          brand: brandName,
+          category: categoryName,
+          description: p.description || 'Expertly structured haute tailoring garment designed with quiet luxury aesthetics.',
+          price: calculatedPrice,
+          originalPrice: calculatedPrice > 100 ? calculatedPrice * 1.2 : undefined,
+          stock: calculatedStock,
+          sku: skuCode,
+          barcode: barcodeCode,
+          material: materialName,
+          season: seasonName,
+          imageUrl: primaryImg,
+          gallery: galleryUrls.length > 0 ? galleryUrls : [primaryImg],
+          sizes: ['S', 'M', 'L', 'XL'],
+          colors: [
+            { name: 'Charcoal', hex: '#1E2631' },
+            { name: 'Terracotta', hex: '#C84428' },
+            { name: 'Ecru', hex: '#EAE6DF' }
+          ]
+        };
+      });
+
+      return products;
+    } catch {
+      return VERIFIED_FALLBACK_PRODUCTS;
+    }
+  },
+
+  // Currency formatting helper
+  formatPrice(amountUSD: number, currency: CurrencyCode): string {
+    switch (currency) {
+      case 'KHR':
+        return `${Math.round(amountUSD * 4100).toLocaleString('en-US')} ៛`;
+      case 'EUR':
+        return `€${(amountUSD * 0.92).toFixed(2)}`;
+      case 'USD':
+      default:
+        return `$${amountUSD.toFixed(2)}`;
+    }
+  }
+};

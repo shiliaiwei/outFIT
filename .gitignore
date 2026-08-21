@@ -1,0 +1,19 @@
+# Backups
+backup/
+*.bak
+*.backup
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependencies & Build (for future Next.js/Vite apps)
+node_modules/
+.next/
+dist/
+build/
+out/
+.env*.local
+.env
