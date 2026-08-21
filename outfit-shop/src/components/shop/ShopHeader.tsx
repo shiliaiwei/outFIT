@@ -30,22 +30,18 @@ const ANNOUNCEMENT_PHRASES = [
   {
     gold: "ពេល DEVELOPER សម្រាក ខួរក្បាលចាប់ផ្តើមដំណើរការប្រព័ន្ធច្នៃប្រឌិតស្វ័យប្រវត្តិ",
     text: "កូដដ៏ល្អឥតខ្ចោះមិនមែនកើតចេញពីសម្ពាធតានតឹងនោះទេ តែត្រូវបានរកឃើញនៅពេលអ្នកដើរចេញ ហើយទុកឱ្យគំនិតភ្ជាប់គ្នាដោយស្ងប់ស្ងាត់។",
-    isKhmer: true,
-  },
-  {
-    gold: "DEV AT REST. ENGAGING THE BRAIN’S DEFAULT MODE NETWORK.",
-    text: "YOUR BEST CODE IS NOT WRITTEN UNDER MENTAL STRAIN, BUT DISCOVERED IN SILENCE.",
-    isKhmer: false,
   },
   {
     gold: "នៅតែជា DEVELOPER គ្រាន់តែនៅខាងក្រៅ",
-    text: "គំនិតដ៏អស្ចារ្យមិនមែនកើតចេញតែពីលើតុធ្វើការនោះទេ។",
-    isKhmer: true,
+    text: "គំនិតដ៏អស្ចារ្យមិនមែនកើតចេញតែពីលើតុធ្វើការនោះទេ — ការសម្រាកក្នុងបរិយាកាសបើកទូលាយនាំមកនូវភាពច្នៃប្រឌិត។",
   },
   {
-    gold: "HAUTE ATELIER ARCHIVE.",
-    text: "NORMANDY FLAX LINEN, MULBERRY SILK & CALIFORNIA SUPIMA KNITS.",
-    isKhmer: false,
+    gold: "លុបបំបាត់ភាពនឿយហត់ បង្កើនភាពច្បាស់លាស់",
+    text: "ចិត្តស្រឡះទើបបង្កើតស្ថាបត្យកម្មប្រព័ន្ធដ៏ល្អឥតខ្ចោះ — កុំបង្ខំគំនិតនៅពេលខួរក្បាលត្រូវការថាមពលឡើងវិញ។",
+  },
+  {
+    gold: "សិល្បៈនៃការច្នៃម៉ូដ OUTFIT ATELIER",
+    text: "ក្រណាត់កប្បាសសូត្រធម្មជាតិ និងក្រណាត់ទេសឯក Normandy Flax — គុណភាពខ្ពស់ ផាសុកភាព និងភាពប្រណិតពិតប្រាកដ។",
   }
 ];
 
@@ -66,7 +62,7 @@ export function ShopHeader({
   const [isPaused, setIsPaused] = useState(false);
   const currencyRef = useRef<HTMLDivElement>(null);
 
-  // Smooth vertical flip ticker rotation (8.5s for comfortable, relaxed reading)
+  // Realistic 3D mechanical flip ticker (11s reading time + 260ms snappy flip)
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
@@ -74,8 +70,8 @@ export function ShopHeader({
       setTimeout(() => {
         setFlipIndex((prev) => (prev + 1) % ANNOUNCEMENT_PHRASES.length);
         setIsFlipping(false);
-      }, 500);
-    }, 8500);
+      }, 260);
+    }, 11000);
 
     return () => clearInterval(timer);
   }, [isPaused]);
@@ -105,27 +101,23 @@ export function ShopHeader({
 
   return (
     <>
-      {/* 1. Ultra-Compact Gold Premium Vertical Flip Ticker (Non-sticky: scrolls away with page, hover pauses) */}
+      {/* 1. Ultra-Compact Gold Premium 3D Mechanical Flip Ticker (100% Khmer Language Only, 11s duration, hover-pause) */}
       <div 
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="bg-[#12171E] text-[#F8F7F4] py-2 px-4 overflow-hidden border-b border-[#D4AF37]/30 select-none relative min-h-[38px] flex items-center justify-center cursor-default"
+        className="bg-[#12171E] text-[#F8F7F4] py-2 px-4 overflow-hidden border-b border-[#D4AF37]/30 select-none relative min-h-[38px] flex items-center justify-center cursor-default flip-card-3d-wrapper"
       >
         <div 
-          lang={ANNOUNCEMENT_PHRASES[flipIndex].isKhmer ? "km" : "en"}
-          className={`flex items-center justify-center gap-2.5 text-center transition-all duration-500 ease-in-out transform ${
-            ANNOUNCEMENT_PHRASES[flipIndex].isKhmer ? 'font-khmer text-[13.5px] sm:text-[14px] leading-relaxed font-semibold' : 'font-mono text-[11.5px] sm:text-[12px]'
-          } ${
-            isFlipping 
-              ? 'opacity-0 -translate-y-2.5 scale-98 blur-[1.5px]' 
-              : 'opacity-100 translate-y-0 scale-100 blur-0'
+          lang="km"
+          className={`flex items-center justify-center gap-2.5 text-center font-khmer text-[13.5px] sm:text-[14px] leading-relaxed font-semibold ${
+            isFlipping ? 'flip-3d-flipping' : 'flip-3d-active'
           }`}
         >
-          <span className="gold-gradient-text font-bold tracking-wide font-khmer">
+          <span className="gold-gradient-text font-bold tracking-wide">
             {ANNOUNCEMENT_PHRASES[flipIndex].gold}
           </span>
           <span className="text-[#D4AF37]/60 font-mono hidden md:inline">—</span>
-          <span className="text-[#F8F7F4] tracking-normal hidden md:inline font-khmer">
+          <span className="text-[#F8F7F4] tracking-normal hidden md:inline">
             {ANNOUNCEMENT_PHRASES[flipIndex].text}
           </span>
         </div>

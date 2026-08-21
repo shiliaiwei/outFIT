@@ -341,6 +341,52 @@ modal {
   color: transparent;
 }
 
+/* REALISTIC 3D MECHANICAL FLIP TRANSITION */
+.flip-card-3d-wrapper {
+  perspective: 1000px;
+  perspective-origin: center;
+}
+
+.flip-3d-active {
+  animation: flip3dIn 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.flip-3d-flipping {
+  animation: flip3dOut 0.24s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes flip3dIn {
+  0% {
+    opacity: 0;
+    transform: rotateX(85deg) translateY(-6px) scale(0.97);
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 0.9;
+    transform: rotateX(-6deg) translateY(0.5px) scale(1.005);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg) translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes flip3dOut {
+  0% {
+    opacity: 1;
+    transform: rotateX(0deg) translateY(0) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: rotateX(-85deg) translateY(6px) scale(0.97);
+    filter: blur(2px);
+  }
+}
+
 /* LIQUID GLASS GIANT LOGO STYLING */
 .liquid-glass-logo-charcoal {
   background: linear-gradient(180deg, rgba(30, 38, 49, 0.98) 0%, rgba(30, 38, 49, 0.75) 55%, rgba(30, 38, 49, 0.35) 100%);
