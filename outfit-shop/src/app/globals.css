@@ -368,9 +368,35 @@ modal {
   align-items: center;
 }
 
+/* LOCAL GOOGLE SANS FONT DECLARATIONS */
+@font-face {
+  font-family: 'Google Sans';
+  src: url('/fonts/GoogleSans-Regular.woff2') format('woff2'),
+       url('/fonts/GoogleSans-Regular.ttf') format('truetype'),
+       url('/fonts/GoogleSans.woff2') format('woff2'),
+       url('/fonts/GoogleSans.ttf') format('truetype'),
+       url('/fonts/GoogleSans-Medium.ttf') format('truetype'),
+       url('/fonts/GoogleSansKhmer.woff2') format('woff2'),
+       url('/fonts/GoogleSansKhmer.ttf') format('truetype');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Google Sans';
+  src: url('/fonts/GoogleSans-Bold.woff2') format('woff2'),
+       url('/fonts/GoogleSans-Bold.ttf') format('truetype'),
+       url('/fonts/GoogleSansKhmer-Bold.woff2') format('woff2'),
+       url('/fonts/GoogleSansKhmer-Bold.ttf') format('truetype');
+  font-weight: 600 700 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* GOOGLE KHMER FONT SYSTEM */
 .font-khmer, [lang="km"] {
-  font-family: var(--font-khmer), 'Google Sans', 'Kantumruy Pro', 'Noto Sans Khmer', 'Siemreap', sans-serif !important;
+  font-family: 'Google Sans', var(--font-khmer), 'Kantumruy Pro', 'Noto Sans Khmer', 'Siemreap', sans-serif !important;
   font-feature-settings: "kern" 1, "liga" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
