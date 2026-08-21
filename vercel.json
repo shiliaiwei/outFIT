@@ -1,6 +1,7 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
   "buildCommand": "npm --prefix outfit-shop run build",
   "outputDirectory": "outfit-shop/.next",
-  "installCommand": "npm --prefix outfit-shop install",
-  "framework": "nextjs"
+  "installCommand": "npm --prefix outfit-shop install"
 }
