@@ -65,14 +65,14 @@ export function ShopHeader({
 
   return (
     <header className="sticky top-0 z-40 w-full flex flex-col">
-      {/* 1. Ultra-Compact Top Announcement Bar (Real Products, Fabrics & Brand Provenance) */}
+      {/* 1. Ultra-Compact Top Announcement Bar */}
       <div className="bg-[#1E2631] text-[#F8F7F4] text-[11px] py-1.5 px-3 sm:px-6 flex items-center justify-between border-b border-white/10 font-mono select-none">
         
-        {/* Left: Real Fabric & Delivery Guarantee */}
+        {/* Left: Under development message requested by user */}
         <div className="flex items-center gap-2 mx-auto sm:mx-0 truncate">
           <span className="w-1.5 h-1.5 rounded-[2px] bg-[#C84428] shrink-0 animate-pulse" />
           <span className="truncate">
-            <strong className="text-white">Normandy Flax, Silk &amp; Supima Knits</strong> • Complimentary courier over $120 USD
+            <strong className="text-[#E05436]">This page is under development</strong> • Still a developer. Just outside. Not every great idea starts at a desk.
           </span>
         </div>
 
@@ -83,7 +83,7 @@ export function ShopHeader({
             <span>Gucci • Louis Vuitton • RLX • OutFIT Atelier</span>
           </span>
           <span>•</span>
-          <span className="text-[#EAE6DF] font-bold">{totalProductsCount || 177} Verified Pieces</span>
+          <span className="text-[#EAE6DF] font-bold">{totalProductsCount || 177} Pieces</span>
         </div>
       </div>
 

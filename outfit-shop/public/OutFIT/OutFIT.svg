@@ -26,21 +26,12 @@
   <rect x="24" y="24" width="464" height="464" rx="54" fill="url(#bgGrad)" filter="url(#subtleGlow)"/>
   <rect x="24" y="24" width="464" height="464" rx="54" fill="none" stroke="url(#specularBorder)" stroke-width="8"/>
 
-  <!-- Atelier Infinity / Dual-Loop Haute Emblem -->
-  <g transform="translate(256, 195)">
-    <!-- Left Loop (Ecru / Titanium) -->
-    <path d="M-55,-40 C-105,-40 -140,-5 -140,40 C-140,85 -105,120 -55,120 C-10,120 25,85 25,40 C25,-5 -10,-40 -55,-40 Z" fill="none" stroke="#F8F7F4" stroke-width="26" stroke-linecap="round"/>
-    
-    <!-- Right Loop (Terracotta Signature) -->
-    <path d="M55,-40 C10,-40 -25,-5 -25,40 C-25,85 10,120 55,120 C105,120 140,85 140,40 C140,-5 105,-40 55,-40 Z" fill="none" stroke="url(#terracottaGrad)" stroke-width="26" stroke-linecap="round"/>
-
-    <!-- Specular Center Dots -->
-    <circle cx="-55" cy="40" r="14" fill="#FFFFFF" opacity="0.95"/>
-    <circle cx="55" cy="40" r="14" fill="#FFFFFF" opacity="0.95"/>
-  </g>
-
-  <!-- Wordmark 'OUTFIT' underneath -->
-  <text x="256" y="415" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Outfit', sans-serif" font-size="46" font-weight="900" letter-spacing="8" text-anchor="middle" fill="#F8F7F4">
-    OUT<tspan fill="#C84428">FIT</tspan>
+  <!-- Pure Bold Centered 'OUTFIT' Text Wordmark (No extra icons) -->
+  <text x="256" y="285" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Outfit', 'Helvetica Neue', sans-serif" font-size="82" font-weight="900" letter-spacing="4" text-anchor="middle" fill="#F8F7F4">
+    OUT<tspan fill="url(#terracottaGrad)">FIT</tspan>
+  </text>
+  
+  <text x="256" y="340" font-family="-apple-system, BlinkMacSystemFont, 'JetBrains Mono', monospace" font-size="16" font-weight="700" letter-spacing="8" text-anchor="middle" fill="#8E9AA8">
+    HAUTE ATELIER
   </text>
 </svg>

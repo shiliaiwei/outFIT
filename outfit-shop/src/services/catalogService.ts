@@ -96,20 +96,36 @@ const VERIFIED_FALLBACK_PRODUCTS: ShopProduct[] = [
 ];
 
 export const CatalogService = {
-  // Fetch real-time products from the public API endpoint
+  // Fetch real-time products from the public API endpoint or proxy
   async getLiveProducts(): Promise<ShopProduct[]> {
     try {
-      const res = await fetch(`${API_BASE_URL}/products?per_page=200`, {
-        headers: { 'Accept': 'application/json' },
-        cache: 'no-store'
-      });
-
-      if (!res.ok) {
-        return VERIFIED_FALLBACK_PRODUCTS;
+      let json: any = null;
+      
+      // 1. Try Next.js internal edge proxy first (Zero CORS)
+      try {
+        const proxyRes = await fetch('/api/products', {
+          headers: { 'Accept': 'application/json' },
+          cache: 'no-store'
+        });
+        if (proxyRes.ok) {
+          json = await proxyRes.json();
+        }
+      } catch {
+        // Fallback to direct call
       }
 
-      const json = await res.json();
-      if (!json.data || !Array.isArray(json.data) || json.data.length === 0) {
+      // 2. If proxy didn't return data, fetch direct endpoint
+      if (!json || !json.data || !Array.isArray(json.data) || json.data.length === 0) {
+        const res = await fetch(`${API_BASE_URL}/products?per_page=200`, {
+          headers: { 'Accept': 'application/json' },
+          cache: 'no-store'
+        });
+        if (res.ok) {
+          json = await res.json();
+        }
+      }
+
+      if (!json || !json.data || !Array.isArray(json.data) || json.data.length === 0) {
         return VERIFIED_FALLBACK_PRODUCTS;
       }
 
