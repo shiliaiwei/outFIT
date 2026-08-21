@@ -86,4 +86,4 @@ postman/
 *.postman_globals.json
 *.postman_dump.json
 Postman/
-*OutfitShop_Master_Collection.json
+*.OutfitShop_Master_Collection.json
