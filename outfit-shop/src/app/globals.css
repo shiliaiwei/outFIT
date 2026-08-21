@@ -371,25 +371,34 @@ modal {
 /* LOCAL GOOGLE SANS FONT DECLARATIONS */
 @font-face {
   font-family: 'Google Sans';
-  src: url('/fonts/GoogleSans-Regular.woff2') format('woff2'),
-       url('/fonts/GoogleSans-Regular.ttf') format('truetype'),
-       url('/fonts/GoogleSans.woff2') format('woff2'),
-       url('/fonts/GoogleSans.ttf') format('truetype'),
-       url('/fonts/GoogleSans-Medium.ttf') format('truetype'),
-       url('/fonts/GoogleSansKhmer.woff2') format('woff2'),
-       url('/fonts/GoogleSansKhmer.ttf') format('truetype');
-  font-weight: 400 500;
+  src: url('/fonts/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf') format('truetype-variations'),
+       url('/fonts/Google_Sans/static/GoogleSans-Regular.ttf') format('truetype');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Google Sans';
-  src: url('/fonts/GoogleSans-Bold.woff2') format('woff2'),
-       url('/fonts/GoogleSans-Bold.ttf') format('truetype'),
-       url('/fonts/GoogleSansKhmer-Bold.woff2') format('woff2'),
-       url('/fonts/GoogleSansKhmer-Bold.ttf') format('truetype');
-  font-weight: 600 700 800 900;
+  src: url('/fonts/Google_Sans/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf') format('truetype-variations'),
+       url('/fonts/Google_Sans/static/GoogleSans-Italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Google Sans';
+  src: url('/fonts/Google_Sans/static/GoogleSans-Bold.ttf') format('truetype');
+  font-weight: 700 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Google Sans';
+  src: url('/fonts/Google_Sans/static/GoogleSans-Medium.ttf') format('truetype');
+  font-weight: 500 600;
   font-style: normal;
   font-display: swap;
 }
