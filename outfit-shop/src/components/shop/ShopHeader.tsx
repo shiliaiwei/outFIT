@@ -28,20 +28,24 @@ interface ShopHeaderProps {
 
 const ANNOUNCEMENT_PHRASES = [
   {
+    gold: "ពេល DEVELOPER សម្រាក ខួរក្បាលចាប់ផ្តើមដំណើរការប្រព័ន្ធច្នៃប្រឌិតស្វ័យប្រវត្តិ",
+    text: "កូដដ៏ល្អឥតខ្ចោះមិនមែនកើតចេញពីសម្ពាធតានតឹងនោះទេ តែត្រូវបានរកឃើញនៅពេលអ្នកដើរចេញ ហើយទុកឱ្យគំនិតភ្ជាប់គ្នាដោយស្ងប់ស្ងាត់។",
+    isKhmer: true,
+  },
+  {
     gold: "DEV AT REST. ENGAGING THE BRAIN’S DEFAULT MODE NETWORK.",
-    text: "YOUR BEST CODE IS NOT WRITTEN UNDER MENTAL STRAIN, BUT DISCOVERED IN SILENCE."
+    text: "YOUR BEST CODE IS NOT WRITTEN UNDER MENTAL STRAIN, BUT DISCOVERED IN SILENCE.",
+    isKhmer: false,
   },
   {
-    gold: "STILL A DEVELOPER. JUST OUTSIDE.",
-    text: "NOT EVERY GREAT ARCHITECTURAL IDEA STARTS AT A DESK."
-  },
-  {
-    gold: "RUNNING COGNITIVE GARBAGE COLLECTION IN THE OPEN AIR.",
-    text: "A CLEAR MIND ARCHITECTS WHAT OVERCLOCKING CANNOT FORCE."
+    gold: "នៅតែជា DEVELOPER គ្រាន់តែនៅខាងក្រៅ",
+    text: "គំនិតដ៏អស្ចារ្យមិនមែនកើតចេញតែពីលើតុធ្វើការនោះទេ។",
+    isKhmer: true,
   },
   {
     gold: "HAUTE ATELIER ARCHIVE.",
-    text: "NORMANDY FLAX LINEN, MULBERRY SILK & CALIFORNIA SUPIMA KNITS."
+    text: "NORMANDY FLAX LINEN, MULBERRY SILK & CALIFORNIA SUPIMA KNITS.",
+    isKhmer: false,
   }
 ];
 
@@ -69,7 +73,7 @@ export function ShopHeader({
         setFlipIndex((prev) => (prev + 1) % ANNOUNCEMENT_PHRASES.length);
         setIsFlipping(false);
       }, 300);
-    }, 4200);
+    }, 4500);
 
     return () => clearInterval(timer);
   }, []);
@@ -100,9 +104,11 @@ export function ShopHeader({
   return (
     <>
       {/* 1. Ultra-Compact Gold Premium Vertical Flip Ticker (Non-sticky: scrolls away with page) */}
-      <div className="bg-[#12171E] text-[#F8F7F4] text-[11px] py-1.5 px-4 overflow-hidden border-b border-[#D4AF37]/30 font-mono select-none relative min-h-[32px] flex items-center justify-center">
+      <div className="bg-[#12171E] text-[#F8F7F4] text-[11px] py-1.5 px-4 overflow-hidden border-b border-[#D4AF37]/30 select-none relative min-h-[32px] flex items-center justify-center">
         <div 
           className={`flex items-center justify-center gap-2.5 text-center transition-all duration-300 ease-out transform ${
+            ANNOUNCEMENT_PHRASES[flipIndex].isKhmer ? 'font-khmer' : 'font-mono'
+          } ${
             isFlipping 
               ? 'opacity-0 -translate-y-2 scale-98 blur-[1px]' 
               : 'opacity-100 translate-y-0 scale-100 blur-0'

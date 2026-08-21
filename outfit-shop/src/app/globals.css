@@ -368,6 +368,12 @@ modal {
   align-items: center;
 }
 
+/* GOOGLE KHMER FONT SYSTEM */
+.font-khmer {
+  font-family: var(--font-khmer), "Google Sans", "Kantumruy Pro", "Noto Sans Khmer", -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
 /* CUSTOM SCROLLBAR FOR COMPACT DENSITY */
 ::-webkit-scrollbar {
   width: 5px;

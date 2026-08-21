@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans, JetBrains_Mono, Kantumruy_Pro } from "next/font/google";
 import "./globals.css";
 
 const outfitFont = Outfit({
@@ -18,6 +18,12 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-mono",
+});
+
+const khmerFont = Kantumruy_Pro({
+  subsets: ["khmer", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-khmer",
 });
 
 export const metadata: Metadata = {
@@ -42,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfitFont.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${outfitFont.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} ${khmerFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans selection:bg-[#C84428] selection:text-white">
         {children}
