@@ -26,12 +26,8 @@
   <rect x="24" y="24" width="464" height="464" rx="54" fill="url(#bgGrad)" filter="url(#subtleGlow)"/>
   <rect x="24" y="24" width="464" height="464" rx="54" fill="none" stroke="url(#specularBorder)" stroke-width="8"/>
 
-  <!-- Pure Bold Centered 'OUTFIT' Text Wordmark (No extra icons) -->
-  <text x="256" y="285" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Outfit', 'Helvetica Neue', sans-serif" font-size="82" font-weight="900" letter-spacing="4" text-anchor="middle" fill="#F8F7F4">
+  <!-- Big Bold Centered 'OUTFIT' Text Only (No Slogans / Quotes) -->
+  <text x="256" y="280" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Outfit', 'Helvetica Neue', sans-serif" font-size="112" font-weight="900" letter-spacing="2" text-anchor="middle" dominant-baseline="central" fill="#F8F7F4">
     OUT<tspan fill="url(#terracottaGrad)">FIT</tspan>
-  </text>
-  
-  <text x="256" y="340" font-family="-apple-system, BlinkMacSystemFont, 'JetBrains Mono', monospace" font-size="16" font-weight="700" letter-spacing="8" text-anchor="middle" fill="#8E9AA8">
-    HAUTE ATELIER
   </text>
 </svg>
