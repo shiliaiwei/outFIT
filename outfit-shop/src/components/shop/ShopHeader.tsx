@@ -112,19 +112,20 @@ export function ShopHeader({
         className="bg-[#12171E] text-[#F8F7F4] text-[11px] py-2 px-4 overflow-hidden border-b border-[#D4AF37]/30 select-none relative min-h-[34px] flex items-center justify-center cursor-default"
       >
         <div 
+          lang={ANNOUNCEMENT_PHRASES[flipIndex].isKhmer ? "km" : "en"}
           className={`flex items-center justify-center gap-2.5 text-center transition-all duration-500 ease-in-out transform ${
-            ANNOUNCEMENT_PHRASES[flipIndex].isKhmer ? 'font-khmer' : 'font-mono'
+            ANNOUNCEMENT_PHRASES[flipIndex].isKhmer ? 'font-khmer text-[12px]' : 'font-mono text-[11px]'
           } ${
             isFlipping 
               ? 'opacity-0 -translate-y-2.5 scale-98 blur-[1.5px]' 
               : 'opacity-100 translate-y-0 scale-100 blur-0'
           }`}
         >
-          <span className="gold-gradient-text font-bold tracking-wider">
+          <span className="gold-gradient-text font-bold tracking-wider font-khmer">
             {ANNOUNCEMENT_PHRASES[flipIndex].gold}
           </span>
           <span className="text-[#D4AF37]/60 font-mono hidden md:inline">—</span>
-          <span className="text-[#F8F7F4] tracking-wide hidden md:inline">
+          <span className="text-[#F8F7F4] tracking-wide hidden md:inline font-khmer">
             {ANNOUNCEMENT_PHRASES[flipIndex].text}
           </span>
         </div>

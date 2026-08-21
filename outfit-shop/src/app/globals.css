@@ -369,9 +369,12 @@ modal {
 }
 
 /* GOOGLE KHMER FONT SYSTEM */
-.font-khmer {
-  font-family: var(--font-khmer), "Google Sans", "Kantumruy Pro", "Noto Sans Khmer", -apple-system, sans-serif;
-  line-height: 1.5;
+.font-khmer, [lang="km"] {
+  font-family: var(--font-khmer), 'Google Sans', 'Kantumruy Pro', 'Noto Sans Khmer', 'Siemreap', sans-serif !important;
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 /* CUSTOM SCROLLBAR FOR COMPACT DENSITY */
