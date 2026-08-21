@@ -72,34 +72,13 @@ export function ShopHeader({
         <div className="absolute inset-y-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-[#12171E] to-transparent z-10 pointer-events-none" />
 
         <div className="animate-announcement-marquee flex items-center whitespace-nowrap cursor-default">
-          {[1, 2].map((trackIndex) => (
-            <div key={trackIndex} className="flex items-center gap-8 sm:gap-12 shrink-0 pr-8 sm:pr-12">
-              <div className="flex items-center gap-2.5">
+          {[1, 2, 3, 4].map((trackIndex) => (
+            <div key={trackIndex} className="flex items-center gap-12 shrink-0 pr-12">
+              <div className="flex items-center gap-3">
                 <span className="text-[#D4AF37] text-xs">✦</span>
-                <span className="gold-gradient-text font-bold uppercase tracking-wider">This page is under development</span>
-                <span className="text-[#8E9AA8]">•</span>
-                <span className="text-[#F8F7F4]">Still a developer. Just outside. Not every great idea starts at a desk.</span>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <span className="text-[#D4AF37] text-xs">✦</span>
-                <span className="text-[#E05436] font-bold">Haute Archive</span>
-                <span className="text-[#8E9AA8]">•</span>
-                <span className="text-[#EAE6DF]">Normandy Flax Linen, Mulberry Silk &amp; California Supima Knits</span>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <span className="text-[#D4AF37] text-xs">✦</span>
-                <span className="text-[#D4AF37] font-semibold">Verified Brands</span>
-                <span className="text-[#8E9AA8]">•</span>
-                <span className="text-white">Gucci • Louis Vuitton • Ralph Lauren RLX • OutFIT Atelier ({totalProductsCount || 177} Pieces)</span>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <span className="text-[#D4AF37] text-xs">✦</span>
-                <span className="gold-gradient-text font-bold">Insured Courier</span>
-                <span className="text-[#8E9AA8]">•</span>
-                <span className="text-[#F8F7F4]">Complimentary Global Atelier Express on orders over $120.00 USD</span>
+                <span className="gold-gradient-text font-bold">Still a developer. Just outside.</span>
+                <span className="text-[#D4AF37]/60">—</span>
+                <span className="text-[#F8F7F4]">Not every great idea starts at a desk.</span>
               </div>
             </div>
           ))}
