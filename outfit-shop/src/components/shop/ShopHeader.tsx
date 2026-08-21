@@ -109,23 +109,23 @@ export function ShopHeader({
       <div 
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="bg-[#12171E] text-[#F8F7F4] text-[11px] py-2 px-4 overflow-hidden border-b border-[#D4AF37]/30 select-none relative min-h-[34px] flex items-center justify-center cursor-default"
+        className="bg-[#12171E] text-[#F8F7F4] py-2 px-4 overflow-hidden border-b border-[#D4AF37]/30 select-none relative min-h-[38px] flex items-center justify-center cursor-default"
       >
         <div 
           lang={ANNOUNCEMENT_PHRASES[flipIndex].isKhmer ? "km" : "en"}
           className={`flex items-center justify-center gap-2.5 text-center transition-all duration-500 ease-in-out transform ${
-            ANNOUNCEMENT_PHRASES[flipIndex].isKhmer ? 'font-khmer text-[12px]' : 'font-mono text-[11px]'
+            ANNOUNCEMENT_PHRASES[flipIndex].isKhmer ? 'font-khmer text-[13.5px] sm:text-[14px] leading-relaxed font-semibold' : 'font-mono text-[11.5px] sm:text-[12px]'
           } ${
             isFlipping 
               ? 'opacity-0 -translate-y-2.5 scale-98 blur-[1.5px]' 
               : 'opacity-100 translate-y-0 scale-100 blur-0'
           }`}
         >
-          <span className="gold-gradient-text font-bold tracking-wider font-khmer">
+          <span className="gold-gradient-text font-bold tracking-wide font-khmer">
             {ANNOUNCEMENT_PHRASES[flipIndex].gold}
           </span>
           <span className="text-[#D4AF37]/60 font-mono hidden md:inline">—</span>
-          <span className="text-[#F8F7F4] tracking-wide hidden md:inline font-khmer">
+          <span className="text-[#F8F7F4] tracking-normal hidden md:inline font-khmer">
             {ANNOUNCEMENT_PHRASES[flipIndex].text}
           </span>
         </div>

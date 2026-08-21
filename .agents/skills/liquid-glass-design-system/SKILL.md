@@ -156,3 +156,35 @@ To prevent Next.js React hydration mismatches between Server-Side Rendering and 
 * **Single-Row High-Density Layout:** Left-aligned curated collection chips (`All`, `Ready-to-Wear`, `T-Shirts`, etc.) + right-aligned brand filters and 1-tap outside sort pills (`Featured`, `Price ↑`, `Price ↓`, `Stock`).
 * **No Hidden Dropdown Clutter:** Direct 1-tap switching on the surface.
 * **Strict Tokens:** Strict `2px` border radius (`rounded-[2px]`), Charcoal `#1E2631`, Terracotta `#C84428`, Ecru `#F8F7F4`.
+
+---
+
+## 7 · Strict Exclusive Khmer Typography Standard — Google Sans ONLY
+
+1. **Law of Exclusive Khmer Font**: **Google Sans** is the mandatory, non-negotiable primary font for ALL Khmer text across the entire application and all subcomponents.
+2. **Never Apply Other Fonts to Khmer**: No generic serif, system font, or arbitrary fallback font may override Khmer text.
+3. **Dedicated Asset Hierarchy**:
+   - Location: `public/fonts/Google_Sans/`
+   - Primary Variable font: `GoogleSans-VariableFont_GRAD,opsz,wght.ttf`
+   - Static Weights: `GoogleSans-Regular.ttf`, `GoogleSans-Medium.ttf`, `GoogleSans-SemiBold.ttf`, `GoogleSans-Bold.ttf`.
+4. **CSS Unicode Enforcement**:
+   ```css
+   @font-face {
+     font-family: 'Google Sans';
+     src: url('/fonts/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf') format('truetype-variations'),
+          url('/fonts/Google_Sans/static/GoogleSans-Regular.ttf') format('truetype');
+     font-weight: 100 900;
+     font-style: normal;
+     font-display: swap;
+   }
+
+   .font-khmer, [lang="km"], [lang="kh"] {
+     font-family: 'Google Sans', var(--font-khmer), 'Kantumruy Pro', sans-serif !important;
+     font-feature-settings: "kern" 1, "liga" 1;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+     line-height: 1.65;
+   }
+   ```
+5. **Scale Balancing Rule**: Because Khmer glyphs include stacked co-engs and sub-scripts, Khmer text must always be scaled **+1.5px to +2.5px larger** than equivalent Latin text (e.g. `text-[13.5px] - text-[14px]` with `leading-relaxed`).
+
