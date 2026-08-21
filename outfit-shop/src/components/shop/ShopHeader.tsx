@@ -73,11 +73,15 @@ export function ShopHeader({
 
         <div className="animate-announcement-marquee flex items-center whitespace-nowrap cursor-default">
           {[1, 2, 3, 4].map((trackIndex) => (
-            <div key={trackIndex} className="flex items-center gap-12 shrink-0 pr-12">
-              <div className="flex items-center gap-3">
-                <span className="gold-gradient-text font-bold">Still a developer. Just outside.</span>
-                <span className="text-[#D4AF37]/60">—</span>
-                <span className="text-[#F8F7F4]">Not every great idea starts at a desk.</span>
+            <div key={trackIndex} className="flex items-center gap-14 shrink-0 pr-14">
+              <div className="flex items-center gap-3.5">
+                <span className="gold-gradient-text font-bold tracking-wider">
+                  DEV AT REST. ENGAGING THE BRAIN’S DEFAULT MODE NETWORK.
+                </span>
+                <span className="text-[#D4AF37]/60 font-mono">—</span>
+                <span className="text-[#F8F7F4] tracking-wide">
+                  YOUR BEST CODE IS NOT WRITTEN UNDER MENTAL STRAIN, BUT DISCOVERED WHEN YOU STEP AWAY AND LET SUBCONSCIOUS SYNAPSES CONNECT IN SILENCE.
+                </span>
               </div>
             </div>
           ))}

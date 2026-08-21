@@ -326,7 +326,7 @@ modal {
 .animate-announcement-marquee {
   display: flex;
   width: max-content;
-  animation: gold-marquee 32s linear infinite;
+  animation: gold-marquee 58s linear infinite;
   will-change: transform;
 }
 
